@@ -1,0 +1,17 @@
+.technologyList {
+  display: flex;
+  flex-direction: row;
+  max-width: 100%;
+  margin-top: 30px;
+  flex-wrap: wrap;
+  .technologyTag {
+    background-color: #edb183;
+    margin-bottom: 4px;
+    color: #fff;
+    margin-right: 20px;
+    font-family: "Work Sans", sans-serif;
+    font-weight: 400;
+    padding: 1px 8px;
+    border-radius: 20px;
+  }
+}

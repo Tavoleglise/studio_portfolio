@@ -1,0 +1,25 @@
+.button-container {
+  position: relative;
+  border: none;
+  background-color: #ff923e;
+  color: #fff;
+  padding: 20px;
+  border-radius: 30px;
+  font-family: "Work Sans", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  .secondBackground {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ff9b4f;
+    z-index: 0;
+  }
+  .buttonText {
+    position: relative;
+    z-index: 10;
+  }
+}
