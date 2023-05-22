@@ -3,6 +3,7 @@ import {
   useGLTF,
   Center,
   OrbitControls,
+  Environment,
   ContactShadows,
   PerspectiveCamera,
   Sky,
@@ -17,10 +18,25 @@ import {
   EffectComposer,
 } from "@react-three/postprocessing";
 
+import { Perf } from "r3f-perf";
+
+import Exterior from "./components/experienceComponents/Exterior";
+
 export default function Experience({ activeSection, cameraType }) {
   const { nodes } = useGLTF("./model/estudio_v2.glb");
-  const exterior = useGLTF("./model/exterior.glb");
-  const { geometryPosition, geometryRotation, exteriorPosition } = useControls({
+
+  const {
+    geometryPosition,
+    geometryRotation,
+    exteriorPosition,
+    inclination,
+    sunPosition,
+  } = useControls({
+    sunPosition: { value: [1, 2, 3] },
+    inclination: {
+      value: 0,
+      step: 1,
+    },
     exteriorPosition: {
       value: { x: 0, y: 0, z: 0 },
       step: 0.01,
@@ -47,10 +63,7 @@ export default function Experience({ activeSection, cameraType }) {
   walls_floorTexture.flipY = false;
   return (
     <>
-      <EffectComposer multisampling={4}>
-        <DepthOfField focusDistance={0.005} focalLength={0.15} bokehScale={6} />
-        <Pixelation granularity={0} />
-      </EffectComposer>
+      <Perf />
       <color args={["#030202"]} attach="background" />
       {cameraType === 1 ? (
         <OrbitControls
@@ -63,41 +76,43 @@ export default function Experience({ activeSection, cameraType }) {
       ) : (
         <CameraControlsPrueba activeSection={activeSection} />
       )}
-      <ambientLight />
+
+      {/*<axesHelper args={[5]} />*/}
+      {/*<Environment background files="./hdri/belfast_sunset_puresky_4k.hdr" />*/}
+      <ambientLight intensity={0.05} />
+      <directionalLight intensity={1} position={sunPosition} />
       <Sky
-        distance={450000}
-        sunPosition={[2, 1, 0]}
+        sunPosition={sunPosition}
         inclination={0}
         azimuth={0.25}
+        elevation={90}
       />
-      {/*<axesHelper args={[5]} />*/}
+
       <group
         position={[geometryPosition.x, geometryPosition.y, geometryPosition.z]}
         rotation-y={geometryRotation.y}
       >
-        <primitive
-          position={[exteriorPosition.x, -1, exteriorPosition.z]}
-          scale={1}
-          object={exterior.scene}
-        />
-        <Center>
-          <mesh geometry={nodes.bakedMesh.geometry}>
-            <meshBasicMaterial map={objectTexture} />
-          </mesh>
-          <mesh geometry={nodes.walls_floorMesh.geometry}>
-            <meshBasicMaterial map={walls_floorTexture} />
-          </mesh>
-          <mesh
-            geometry={nodes.screenMesh.geometry}
-            rotation={nodes.screenMesh.rotation}
-          />
-          <mesh
-            geometry={nodes.boxMesh.geometry}
-            rotation={nodes.boxMesh.rotation}
-          >
-            <meshBasicMaterial map={objectTexture} side={THREE.DoubleSide} />
-          </mesh>
-        </Center>
+        <Exterior />
+        {
+          <Center>
+            <mesh geometry={nodes.bakedMesh.geometry}>
+              <meshBasicMaterial map={objectTexture} />
+            </mesh>
+            <mesh geometry={nodes.walls_floorMesh.geometry}>
+              <meshBasicMaterial map={walls_floorTexture} />
+            </mesh>
+            <mesh
+              geometry={nodes.screenMesh.geometry}
+              rotation={nodes.screenMesh.rotation}
+            />
+            <mesh
+              geometry={nodes.boxMesh.geometry}
+              rotation={nodes.boxMesh.rotation}
+            >
+              <meshBasicMaterial map={objectTexture} side={THREE.DoubleSide} />
+            </mesh>
+          </Center>
+        }
       </group>
     </>
   );
