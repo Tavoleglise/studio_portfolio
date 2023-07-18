@@ -1,0 +1,99 @@
+.textbox-projects-section {
+  padding: 20px 80px;
+}
+.projectsContainer {
+  display: flex;
+  .projectsCard {
+    position: relative;
+    background-color: #fff;
+    border-radius: 20px;
+    margin-right: 16px;
+    border: 3px solid transparent;
+    img {
+      max-width: 484px;
+      border-radius: 10px;
+      margin: 8px;
+      margin-bottom: 5px;
+    }
+    .project-itemcontent-container {
+      padding: 8px 16px;
+      .project-title {
+        font-weight: 600;
+        font-size: 20px;
+      }
+      .technologyList {
+        display: flex;
+        flex-direction: row;
+        max-width: 100%;
+        margin-top: 0px;
+        flex-wrap: wrap;
+        .technologyTag {
+          font-size: 0.65rem;
+          padding: 1px 7px;
+          margin-right: 5px;
+          color: white;
+          border-radius: 10px;
+          margin-bottom: 4px;
+          display: flex;
+          align-items: center;
+        }
+      }
+      .project-card-buttons-container {
+        display: flex;
+        font-family: "Work Sans", sans-serif;
+        margin-top: 20px;
+        .project-card-button-code {
+          width: 50px;
+          padding: 8px 14px;
+          color: white;
+          border-radius: 13px;
+          font-weight: 600;
+          font-size: 1rem;
+          cursor: pointer;
+        }
+        .project-card-button-live {
+          padding: 8px 14px;
+          color: white;
+          border-radius: 13px;
+          font-weight: 600;
+          font-size: 1rem;
+          cursor: pointer;
+
+          width: 100%;
+          padding: 9px !important;
+          margin-left: 8px;
+        }
+      }
+    }
+  }
+}
+.projects-button-container {
+  width: 200px;
+  height: 50px;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 20px;
+  .project-button {
+    height: 40px;
+    width: 40px;
+    border-radius: 30px;
+    cursor: pointer;
+    margin: 0 20px;
+    img {
+      height: 20px;
+    }
+  }
+}
+
+.avoid-clicks {
+  pointer-events: none;
+}
+
+.hover-unselected {
+  cursor: pointer;
+  &:hover {
+    border: 3px solid #d0d0d0;
+  }
+}

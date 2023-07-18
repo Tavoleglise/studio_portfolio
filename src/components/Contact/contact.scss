@@ -1,0 +1,52 @@
+.contact-form-container {
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 20px;
+  .input-container {
+    width: 100%;
+    box-sizing: border-box;
+    background: #f5f5f5;
+    color: #acacac;
+    border-radius: 13px;
+    padding: 7px;
+    padding-left: 15px;
+    border: 2px solid #f5f5f5;
+    margin-bottom: 20px;
+    &:focus-within {
+      border: 2px solid #c7c7c7;
+    }
+  }
+
+  .contact-name-input-field {
+    border: none;
+    font-size: 1.1rem;
+    background: transparent !important;
+    font-weight: 500;
+    color: #111029;
+    resize: none;
+    &:focus {
+      outline: none;
+      border: none;
+    }
+  }
+
+  .contact-message-input-field {
+    border: none;
+    font-size: 1.1rem;
+    background: transparent !important;
+    font-weight: 500;
+    color: #111029;
+    resize: none;
+    &:focus {
+      outline: none;
+      border: none;
+    }
+  }
+
+  .contact-button-container {
+    .small-button {
+      margin-left: auto;
+      font-size: 1rem;
+    }
+  }
+}
