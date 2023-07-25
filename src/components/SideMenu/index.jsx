@@ -2,6 +2,7 @@ import ButtonIcon from "../ButtonIcon";
 import { useAnimate, stagger, motion } from "framer-motion";
 import { button } from "leva";
 import { useState, useEffect } from "react";
+import usePage from "../../stores/usePage.jsx";
 
 const staggerMenuItems = stagger(0.1, { startDelay: 0.15 });
 const buttons = [
@@ -35,12 +36,6 @@ const buttons = [
     id: 4,
     text: "Beat me",
   },
-  /*{
-    image: "./icons/attribution-pencil-filled.svg",
-    greyImage: "./icons/attribution-pencil.svg",
-    id: 5,
-    text: "Prueba",
-  },*/
 ];
 
 function useMenuAnimation(isOpen) {
@@ -63,7 +58,9 @@ function useMenuAnimation(isOpen) {
   return scope;
 }
 
-export default function SideMenu({ activeSection, setActiveSection }) {
+export default function SideMenu({ activeSection }) {
+  const changeActiveSection = usePage((state) => state.changeActiveSection);
+
   const [isOpen, setIsOpen] = useState(true);
   const scope = useMenuAnimation(isOpen);
 
@@ -83,7 +80,7 @@ export default function SideMenu({ activeSection, setActiveSection }) {
               image={b.image}
               greyImage={b.greyImage}
               active={activeSection === b.id ? true : false}
-              setActiveSection={setActiveSection}
+              setActiveSection={changeActiveSection}
               id={b.id}
               text={b.text}
             />

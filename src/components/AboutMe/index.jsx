@@ -1,6 +1,4 @@
 import { motion, useAnimate } from "framer-motion";
-import Button from "../Button";
-import "./aboutMe.scss";
 
 export default function ({ setActiveSection }) {
   const [scope, animate] = useAnimate();

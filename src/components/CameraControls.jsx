@@ -2,6 +2,7 @@ import { PerspectiveCamera } from "@react-three/drei";
 import { useThree, useFrame } from "@react-three/fiber";
 import { useControls } from "leva";
 import { motion } from "framer-motion-3d";
+import { useEffect } from "react";
 
 export default function CameraControlsPrueba({ activeSection }) {
   const { choise, testCamera, testCameraRotation } = useControls({
